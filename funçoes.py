@@ -40,6 +40,9 @@ def buscar_motorista(listaViagens):
              print("nenhuma viagem encontrada")    
 
 def  viagem_mais_cara(listaViagens):
+    if not listaViagens:
+         print("nenhuma")
+         return
      for v in listaViagens:
          viagem_cara= max(listaViagens, key=lambda v :v["combustivel"])
          print(f"o item com maior gasto de consumo: {viagem_cara["combustivel"]} da viagem {viagem_cara["destino"]}")
