@@ -1,49 +1,30 @@
-from tabulate import tabulate
-listaViagens=[]
-def registrar_viagem(listaViagens):
-    nome=input("digite o nome do motorista: ")
-    destino=input("digite o seu destino: ")
-    distancia=float(input("digite a sua distancia: "))
-    combustivel=float(input("digite o seu combustivel: "))
-    consumo=combustivel/distancia
-     
-    listaViagens.append ({
-        "nome": nome,
-        "destino": destino,
-        "distancia":distancia,
-        "combustivel":combustivel,
-        "consumo": consumo
-    })
+from funcoes import *
+def menu():
+    listaViagens=[]
+    while True:
+        
+        print("biblioteca de livros")
+        print("1- Registra nova viagem")
+        print("2- Exibir de todas viagens") 
+        print("3- Buscar viagem por motoristas")
+        print("4- Exibir viagem mais cara")
+        print("5- Mostrar media geral de consumo") 
+        print("0- Encerra o programa")
 
-    print(listaViagens)
+        opçao=input("escolha uma opçao: ") 
 
-def exibir_viagens(listaViagens) :
-    if not listaViagens:
-        print("nao a viagens registradas")
-    else:    
-        tabela = []
-        for a in listaViagens:
-            tabela.append([a["nome"],  a["destino"], a["distancia"],a["combustivel"],a["consumo"]])
-
-            print(" RELATÓRIO DE VIAGENS")
-            print(tabulate(
-                tabela,
-                headers=["nome", "destino", "distancia","combustivel","consumo"],
-                tablefmt="fancy_grid"
-            ))
-def buscar_motorista(listaViagens):
-    nomemot=input("digite nome do motorista: ")
-    for i in listaViagens:
-         if i["nome"].lower()== nomemot.lower():
+        if opçao =="1":
+           registrar_viagem(listaViagens)
+        elif  opçao=="2":
              exibir_viagens(listaViagens)
-         else:
-             print("nenhuma viagem encontrada")    
+        elif opçao=="3" :
+             buscar_motorista(listaViagens)
+        elif opçao=="4" :
+             viagem_mais_cara(listaViagens)
+        elif opçao=="5":  
+             media_consumo(listaViagens)
 
-def  viagem_mais_cara(listaViagens):
-    if not listaViagens:
-         print("nenhuma")
-         return
-     for v in listaViagens:
-         viagem_cara= max(listaViagens, key=lambda v :v["combustivel"])
-         print(f"o item com maior gasto de consumo: {viagem_cara["combustivel"]} da viagem {viagem_cara["destino"]}")
-
+        elif opçao=="0":
+            print("fim")
+            break
+menu()        
